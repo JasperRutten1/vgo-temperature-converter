@@ -6,26 +6,19 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="brush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="Gray" Offset="0" />
+            <GradientStop Color="White" Offset="0.5" />
+            <GradientStop Color="Black" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Resources>
+    
     <StackPanel>
-        <TextBlock Text="Celsius" Padding="2 2" FontWeight="Bold" FontSize="16">
-            <TextBlock.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="Gray" Offset="0" />
-                    <GradientStop Color="White" Offset="0.5" />
-                    <GradientStop Color="Black" Offset="1" />
-                </LinearGradientBrush>
-            </TextBlock.Background>
-        </TextBlock>
+        <TextBlock Text="Celsius" Background="{StaticResource brush}" Padding="2 2" FontWeight="Bold" FontSize="16"/>
         <TextBox x:Name="celsiusBox" FontSize="16" TextAlignment="Center"/>
-
-        <TextBlock Text="Fahrenheit" Padding="2 2" FontWeight="Bold" FontSize="16">
-            <TextBlock.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="Gray" Offset="0" />
-                    <GradientStop Color="White" Offset="1" />
-                </LinearGradientBrush>
-            </TextBlock.Background>
-        </TextBlock>
+        
+        <TextBlock Text="Fahrenheit" Background="{StaticResource brush}" Padding="2 2" FontWeight="Bold" FontSize="16"/>
         <TextBox x:Name="fahrenheitBox" FontSize="16" TextAlignment="Center"/>
         
         <Button Content="Convert to Celsius" Click="ConvertToCelsius"/>

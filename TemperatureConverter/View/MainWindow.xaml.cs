@@ -22,6 +22,7 @@ namespace View
     {
         public MainWindow()
         {
+            InitializeComponent();
             var brush = new LinearGradientBrush();
             brush.StartPoint = new Point(0, 0);
             brush.EndPoint = new Point(1, 0);
@@ -30,7 +31,6 @@ namespace View
 
             brush.GradientStops.Add(new GradientStop(Colors.White, 1));
 
-            InitializeComponent();
         }
 
         private void ConvertToCelsius(object sender, RoutedEventArgs e)
