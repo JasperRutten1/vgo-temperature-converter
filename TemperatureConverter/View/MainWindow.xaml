@@ -25,6 +25,7 @@
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
         <local:CelsiusConverter x:Key="celsiusConverter"/>
+        <local:FahrenheitConverter x:Key="fahrenheitConverter"/>
     </Window.Resources>
     
     <StackPanel>
@@ -45,7 +46,8 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1" x:Name="fahrenheitBox" Style="{StaticResource boxStyle}"/>
+            <TextBox Grid.Row="1" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource fahrenheitConverter}}" 
+                     x:Name="fahrenheitBox" Style="{StaticResource boxStyle}"/>
         </Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -57,7 +59,7 @@
             <TextBox Grid.Row="1" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
                      x:Name="kelvinBox" Style="{StaticResource boxStyle}"/>
         </Grid>
-        <Slider x:Name="slider" Minimum="0" Maximum="1000" ValueChanged="SliderValueChanged"/>
+        <Slider x:Name="slider" Minimum="0" Maximum="1000"/>
     </StackPanel>
    
 </Window>
