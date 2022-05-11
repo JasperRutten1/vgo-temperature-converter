@@ -25,34 +25,15 @@ namespace View
             InitializeComponent();
         }
 
-        private void ConvertCelsius(object sender, RoutedEventArgs e)
+        private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            var cel = double.Parse(celsiusBox.Text);
-            var far = (cel * 1.8) + 32;
-            var kel = cel + 273.15;
-
-            fahrenheitBox.Text = "" + far;
-            kelvinBox.Text = "" + kel;
-        }
-
-        private void ConvertFahrenheit(object sender, RoutedEventArgs e)
-        {
-            var far = double.Parse(fahrenheitBox.Text);
-            var cel = (far - 32) * 0.5556;
-            var kel = cel + 273.15;
-
-            celsiusBox.Text = "" + cel;
-            kelvinBox.Text = "" + kel;
-        }
-
-        private void ConvertKelvin(object sender, RoutedEventArgs e)
-        {
-            var kel = double.Parse(kelvinBox.Text);
+            var kel = slider.Value;
             var cel = kel - 273.15;
             var far = (cel * 1.8) + 32;
 
             celsiusBox.Text = "" + cel;
             fahrenheitBox.Text = "" + far;
+            kelvinBox.Text = "" + kel;
         }
     }
 }
