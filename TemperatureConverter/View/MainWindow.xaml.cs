@@ -27,16 +27,16 @@ namespace View
 
         private void ConvertToCelsius(object sender, RoutedEventArgs e)
         {
-            var far = double.Parse(textBox.Text);
+            var far = double.Parse(fahrenheitBox.Text);
             var cel = (far - 32) * 0.5556;
-            textBox.Text = "" + cel;
+            celsiusBox.Text = "" + cel;
         }
 
         private void ConvertToFahrenheit(object sender, RoutedEventArgs e)
         {
-            var cel = double.Parse(textBox.Text);
+            var cel = double.Parse(celsiusBox.Text);
             var far = (cel * 1.8) + 32;
-            textBox.Text = "" + far;
+            fahrenheitBox.Text = "" + far;
         }
     }
 }
