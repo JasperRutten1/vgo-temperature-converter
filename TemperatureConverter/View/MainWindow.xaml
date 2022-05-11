@@ -24,9 +24,7 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
-        <local:CelsiusConverter x:Key="celsiusConverter">
-            
-        </local:CelsiusConverter>
+        <local:CelsiusConverter x:Key="celsiusConverter"/>
     </Window.Resources>
     
     <StackPanel>
@@ -37,7 +35,7 @@
             </Grid.RowDefinitions>
             
             <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}"/>
-            <TextBox Grid.Row="1" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter=celsiusConverter}" 
+            <TextBox Grid.Row="1" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource celsiusConverter}}" 
                      x:Name="celsiusBox" Style="{StaticResource boxStyle}"/>
         </Grid>
         <Grid>
