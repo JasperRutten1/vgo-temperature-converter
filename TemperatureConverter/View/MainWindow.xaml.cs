@@ -22,6 +22,14 @@ namespace View
     {
         public MainWindow()
         {
+            var brush = new LinearGradientBrush();
+            brush.StartPoint = new Point(0, 0);
+            brush.EndPoint = new Point(1, 0);
+
+            brush.GradientStops.Add(new GradientStop(Colors.Gray, 0));
+
+            brush.GradientStops.Add(new GradientStop(Colors.White, 1));
+
             InitializeComponent();
         }
 
