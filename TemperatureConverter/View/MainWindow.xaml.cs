@@ -23,27 +23,35 @@ namespace View
         public MainWindow()
         {
             InitializeComponent();
-            var brush = new LinearGradientBrush();
-            brush.StartPoint = new Point(0, 0);
-            brush.EndPoint = new Point(1, 0);
-
-            brush.GradientStops.Add(new GradientStop(Colors.Gray, 0));
-
-            brush.GradientStops.Add(new GradientStop(Colors.White, 1));
-
         }
 
-        private void ConvertToCelsius(object sender, RoutedEventArgs e)
-        {
-            var far = double.Parse(fahrenheitBox.Text);
-            var cel = (far - 32) * 0.5556;
-            celsiusBox.Text = "" + cel;
-        }
-
-        private void ConvertToFahrenheit(object sender, RoutedEventArgs e)
+        private void ConvertCelsius(object sender, RoutedEventArgs e)
         {
             var cel = double.Parse(celsiusBox.Text);
             var far = (cel * 1.8) + 32;
+            var kel = cel + 273.15;
+
+            fahrenheitBox.Text = "" + far;
+            kelvinBox.Text = "" + kel;
+        }
+
+        private void ConvertFahrenheit(object sender, RoutedEventArgs e)
+        {
+            var far = double.Parse(fahrenheitBox.Text);
+            var cel = (far - 32) * 0.5556;
+            var kel = cel + 273.15;
+
+            celsiusBox.Text = "" + cel;
+            kelvinBox.Text = "" + kel;
+        }
+
+        private void ConvertKelvin(object sender, RoutedEventArgs e)
+        {
+            var kel = double.Parse(kelvinBox.Text);
+            var cel = kel - 273.15;
+            var far = (cel * 1.8) + 32;
+
+            celsiusBox.Text = "" + cel;
             fahrenheitBox.Text = "" + far;
         }
     }
