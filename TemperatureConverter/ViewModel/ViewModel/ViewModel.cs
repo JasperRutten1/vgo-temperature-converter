@@ -11,23 +11,19 @@ namespace ViewModel
 {
     public class ConverterViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        public Cell<double> TemperatureInKelvin { get; }
         public  TemperatureScaleViewModel Kelvin { get; }
         public TemperatureScaleViewModel Celsius { get; }
         public TemperatureScaleViewModel Fahrenheit { get; }
 
-        private readonly double temperatureInKelvin;
-
         public ConverterViewModel()
         {
-            this.TemperatureInKelvin = new Cell<double>(temperatureInKelvin);
+            this.TemperatureInKelvin = new Cell<double>();
             this.Kelvin = new TemperatureScaleViewModel(this, new KelvinTemperatureScale());
             this.Celsius = new TemperatureScaleViewModel(this, new CelsiusTemperatureScale());
             this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
         }
-        public Cell<double> TemperatureInKelvin { get; }
-
+        
         public IEnumerable<TemperatureScaleViewModel> Scales
         {
             get
@@ -49,7 +45,7 @@ namespace ViewModel
             this.parent = parent;
             this.temperatureScale = temperatureScale;
 
-            this.parent.PropertyChanged += (sender, args) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Temperature)));
+            this.parent.TemperatureInKelvin.PropertyChanged += (sender, args) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Temperature)));
         }
 
         public string Name => temperatureScale.Name;
