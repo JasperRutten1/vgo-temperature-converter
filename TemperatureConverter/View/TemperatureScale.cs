@@ -13,4 +13,19 @@ namespace View
         double ConvertToKelvin(double temperature);
         double ConvertFromKelvin(double temperature);
     }
+
+    public class KelvinTemperatureScale : ITemperatureScale
+    {
+        public string Name { get; }
+
+        public double ConvertFromKelvin(double temperature)
+        {
+            return temperature;
+        }
+
+        public double ConvertToKelvin(double temperature)
+        {
+            return temperature;
+        }
+    }
 }
