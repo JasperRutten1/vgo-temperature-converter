@@ -29,6 +29,11 @@
                 <local:CelsiusTemperatureScale />
             </local:TemperatureConverter.TemperatureScale>
         </local:TemperatureConverter>
+        <local:TemperatureConverter x:Key="fahrenheitConverter">
+            <local:TemperatureConverter.TemperatureScale>
+                <local:FahrenheitTemperatureScale />
+            </local:TemperatureConverter.TemperatureScale>
+        </local:TemperatureConverter>
     </Window.Resources>
     
     <StackPanel>

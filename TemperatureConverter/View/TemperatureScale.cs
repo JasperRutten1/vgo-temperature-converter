@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace View
 {
-    interface ITemperatureScale
+    public interface ITemperatureScale
     {
         string Name { get; }
 
@@ -16,7 +16,7 @@ namespace View
 
     public class KelvinTemperatureScale : ITemperatureScale
     {
-        public string Name { get; } = "Kelvin";
+        public string Name => "Kelvin";
 
         public double ConvertFromKelvin(double temperature)
         {
@@ -31,7 +31,7 @@ namespace View
 
     public class CelsiusTemperatureScale : ITemperatureScale
     {
-        public string Name { get; } = "Celsius";
+        public string Name => "Celsius";
 
         public double ConvertFromKelvin(double temperature)
         {
@@ -46,7 +46,7 @@ namespace View
 
     public class FahrenheitTemperatureScale : ITemperatureScale
     {
-        public string Name { get; } = "Fahrenheit";
+        public string Name => "Fahrenheit";
 
         public double ConvertFromKelvin(double temperature)
         {
