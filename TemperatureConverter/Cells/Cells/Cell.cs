@@ -44,10 +44,13 @@ namespace Cells
 
         private readonly Func<IN, OUT> transformer;
 
-        public Derived(Cell<IN> dependancy, Func<IN, OUT> transformer) : base(transformer(dependancy.Value))
+        private readonly Func<OUT, IN> untransformer;
+
+        public Derived(Cell<IN> dependancy, Func<IN, OUT> transformer, Func<OUT, IN> untransformer) : base(transformer(dependancy.Value))
         {
             this.dependancy = dependancy;
             this.transformer = transformer;
+            this.untransformer = untransformer;
 
             this.dependancy.PropertyChanged += (sender, args) => base.Value = transformer(dependancy.Value);
         }
@@ -60,7 +63,7 @@ namespace Cells
             }
             set
             {
-                //TODO
+                dependancy.Value = untransformer(value);
             }
         }
     }
