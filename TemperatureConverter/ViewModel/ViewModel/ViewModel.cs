@@ -56,8 +56,9 @@ namespace ViewModel
                 kelvin => temperatureScale.ConvertFromKelvin(kelvin),
                 t => temperatureScale.ConvertToKelvin(t)
             );
-            this.Add = new AddCommand(this.Temperature, 1);
-            this.Remove = new AddCommand(this.Temperature, -1);
+
+            this.Add = new AddCommand(this.Temperature, 1, temperatureScale.ConvertFromKelvin(0), temperatureScale.ConvertFromKelvin(1000));
+            this.Remove = new AddCommand(this.Temperature, -1, temperatureScale.ConvertFromKelvin(0), temperatureScale.ConvertFromKelvin(1000));
         }
     }
 
@@ -67,18 +68,23 @@ namespace ViewModel
 
         private int delta;
 
+        private double min;
+        private double max;
+
         public event EventHandler CanExecuteChanged;
 
-        public AddCommand(Cell<double> cell, int delta)
+        public AddCommand(Cell<double> cell, int delta, double min, double max)
         {
             this.cell = cell;
             this.delta = delta;
+            this.min = min;
+            this.max = max;
         }
 
         public bool CanExecute(object parameter)
         {
             var newValue = cell.Value + delta;
-            return newValue >= 0 && newValue <= 1000;
+            return newValue >= min && newValue <= max;
         }
 
         public void Execute(object parameter)
