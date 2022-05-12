@@ -16,7 +16,7 @@ namespace View
 
     public class KelvinTemperatureScale : ITemperatureScale
     {
-        public string Name { get; }
+        public string Name { get; } = "Kelvin";
 
         public double ConvertFromKelvin(double temperature)
         {
@@ -31,7 +31,7 @@ namespace View
 
     public class CelsiusTemperatureScale : ITemperatureScale
     {
-        public string Name { get; }
+        public string Name { get; } = "Celsius";
 
         public double ConvertFromKelvin(double temperature)
         {
@@ -46,7 +46,7 @@ namespace View
 
     public class FahrenheitTemperatureScale : ITemperatureScale
     {
-        public string Name { get; }
+        public string Name { get; } = "Fahrenheit";
 
         public double ConvertFromKelvin(double temperature)
         {
