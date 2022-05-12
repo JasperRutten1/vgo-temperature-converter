@@ -30,9 +30,9 @@ namespace Cells
             }
         }
 
-        public Cell<U> Derive<U>(Func<T, U> transformer)
+        public Cell<U> Derive<U>(Func<T, U> transformer, Func<U, T> untransformer)
         {
-            return new Derived<T, U>(this, transformer);
+            return new Derived<T, U>(this, transformer, untransformer);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
