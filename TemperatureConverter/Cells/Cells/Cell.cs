@@ -16,7 +16,7 @@ namespace Cells
             this.contents = initialContents;
         }
 
-        public T Value
+        public virtual T Value
         {
             get
             {
@@ -30,6 +30,38 @@ namespace Cells
             }
         }
 
+        public Cell<U> Derive<U>(Func<T, U> transformer)
+        {
+            return new Derived<T, U>(this, transformer);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
+    }
+
+    public class Derived<IN, OUT> : Cell<OUT>
+    {
+        private readonly Cell<IN> dependancy;
+
+        private readonly Func<IN, OUT> transformer;
+
+        public Derived(Cell<IN> dependancy, Func<IN, OUT> transformer) : base(transformer(dependancy.Value))
+        {
+            this.dependancy = dependancy;
+            this.transformer = transformer;
+
+            this.dependancy.PropertyChanged += (sender, args) => base.Value = transformer(dependancy.Value);
+        }
+
+        public override OUT Value
+        {
+            get
+            {
+                return base.Value;
+            }
+            set
+            {
+                //TODO
+            }
+        }
     }
 }
