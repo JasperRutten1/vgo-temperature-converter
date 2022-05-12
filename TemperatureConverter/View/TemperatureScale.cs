@@ -43,4 +43,19 @@ namespace View
             return temperature + 273.15;
         }
     }
+
+    public class FahrenheitTemperatureScale : ITemperatureScale
+    {
+        public string Name { get; }
+
+        public double ConvertFromKelvin(double temperature)
+        {
+            return (1.8 * (temperature - 273.15)) + 32;
+        }
+
+        public double ConvertToKelvin(double temperature)
+        {
+            return ((5 / 9) * (temperature - 32)) + 273.15;
+        }
+    }
 }
