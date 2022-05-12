@@ -14,6 +14,7 @@ using System.Windows.Data;
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using ViewModel;
 
 namespace View
 {
