@@ -45,7 +45,8 @@ namespace ViewModel
 
         public Cell<double> Temperature { get; }
 
-        public ICommand Increment { get; }
+        public ICommand Add { get; }
+        public ICommand Remove { get; }
 
         public TemperatureScaleViewModel(ConverterViewModel parent, ITemperatureScale temperatureScale)
         {   
@@ -55,19 +56,23 @@ namespace ViewModel
                 kelvin => temperatureScale.ConvertFromKelvin(kelvin),
                 t => temperatureScale.ConvertToKelvin(t)
             );
-            this.Increment = new IncrementCommand(this.Temperature);
+            this.Add = new AddCommand(this.Temperature, 1);
+            this.Remove = new AddCommand(this.Temperature, -1);
         }
     }
 
-    public class IncrementCommand : ICommand
+    public class AddCommand : ICommand
     {
         private readonly Cell<double> cell;
 
+        private int delta;
+
         public event EventHandler CanExecuteChanged;
 
-        public IncrementCommand(Cell<double> cell)
+        public AddCommand(Cell<double> cell, int delta)
         {
             this.cell = cell;
+            this.delta = delta;
         }
 
         public bool CanExecute(object parameter)
@@ -77,7 +82,7 @@ namespace ViewModel
 
         public void Execute(object parameter)
         {
-            cell.Value = Math.Round(cell.Value + 1);
+            cell.Value = Math.Round(cell.Value + delta);
         }
     }
 }
