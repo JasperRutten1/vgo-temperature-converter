@@ -50,12 +50,12 @@ namespace Model
 
         public double ConvertFromKelvin(double temperature)
         {
-            return (1.8 * (temperature - 273.15)) + 32;
+            return temperature * 1.8 - 459.67; ;
         }
 
         public double ConvertToKelvin(double temperature)
         {
-            return ((5 / 9) * (temperature - 32)) + 273.15;
+            return (temperature + 459.67) / 1.8;
         }
     }
 }
