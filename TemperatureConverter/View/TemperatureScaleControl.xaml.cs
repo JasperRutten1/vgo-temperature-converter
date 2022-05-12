@@ -24,5 +24,18 @@ namespace View
         {
             InitializeComponent();
         }
+
+
+
+        public String Header
+        {
+            get { return (String)GetValue(HeaderProperty); }
+            set { SetValue(HeaderProperty, value); }
+        }
+
+        public static readonly DependencyProperty HeaderProperty =
+            DependencyProperty.Register("Header", typeof(string), typeof(TemperatureScaleControl), new PropertyMetadata(""));
+
+
     }
 }
