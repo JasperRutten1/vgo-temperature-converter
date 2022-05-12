@@ -26,10 +26,9 @@
         </Style>
         <local:TemperatureConverter x:Key="celsiusConverter">
             <local:TemperatureConverter.TemperatureScale>
-                <local:CelsiusTemperatureScale/>
+                <local:CelsiusTemperatureScale />
             </local:TemperatureConverter.TemperatureScale>
         </local:TemperatureConverter>
-        <local:FahrenheitConverter x:Key="fahrenheitConverter"/>
     </Window.Resources>
     
     <StackPanel>

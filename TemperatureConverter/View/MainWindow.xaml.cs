@@ -27,8 +27,21 @@ namespace View
         }
     }
 
-    public class TemperatureConverter
+    public class TemperatureConverter : IValueConverter
     {
-        
+        public ITemperatureScale TemperatureScale { get; set; }
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return this.TemperatureScale.ConvertFromKelvin((double)value).ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var val = (string)value;
+            var temp = 0.0;
+            if (val.Length > 0 && val != "-")temp = double.Parse(val);
+            return this.TemperatureScale.ConvertToKelvin(temp);
+        }
     }
 }
