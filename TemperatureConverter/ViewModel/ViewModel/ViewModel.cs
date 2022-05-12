@@ -17,26 +17,16 @@ namespace ViewModel
         public TemperatureScaleViewModel Celsius { get; }
         public TemperatureScaleViewModel Fahrenheit { get; }
 
-        private double temperatureInKelvin;
+        private readonly double temperatureInKelvin;
 
         public ConverterViewModel()
         {
+            this.TemperatureInKelvin = new Cell<double>(temperatureInKelvin);
             this.Kelvin = new TemperatureScaleViewModel(this, new KelvinTemperatureScale());
             this.Celsius = new TemperatureScaleViewModel(this, new CelsiusTemperatureScale());
             this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
         }
-        public Cell<double> TemperatureInKelvin
-        {
-            get
-            {
-                return this.temperatureInKelvin;
-            }
-            set
-            {
-                this.temperatureInKelvin = value.Value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
-            }
-        }
+        public Cell<double> TemperatureInKelvin { get; }
 
         public IEnumerable<TemperatureScaleViewModel> Scales
         {
@@ -67,11 +57,11 @@ namespace ViewModel
         public double Temperature {
             get
             {
-                return temperatureScale.ConvertFromKelvin(parent.TemperatureInKelvin);
+                return temperatureScale.ConvertFromKelvin(parent.TemperatureInKelvin.Value);
             }
             set
             {
-                parent.TemperatureInKelvin = temperatureScale.ConvertToKelvin(value);
+                parent.TemperatureInKelvin.Value = temperatureScale.ConvertToKelvin(value);
             }
         }
 
