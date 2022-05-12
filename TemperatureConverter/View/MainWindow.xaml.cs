@@ -20,27 +20,14 @@ namespace View
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private double temperatureInKelvin;
-        public double TemperatureInKelvin {
-            get
-            {
-                return this.temperatureInKelvin;
-            }
-            set
-            {
-                this.temperatureInKelvin = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
-            }
-        }
+        
 
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
+            this.DataContext = new ConverterViewModel();
         }
     }
 
