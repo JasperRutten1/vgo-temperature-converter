@@ -79,6 +79,8 @@ namespace ViewModel
             this.delta = delta;
             this.min = min;
             this.max = max;
+
+            this.cell.PropertyChanged += (sender, args) => CanExecuteChanged(this, new EventArgs());
         }
 
         public bool CanExecute(object parameter)
