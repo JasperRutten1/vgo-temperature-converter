@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
+        x:Name="mainWindow"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <Style x:Key="labelStyle" TargetType="{x:Type TextBlock}">
@@ -44,7 +45,7 @@
             </Grid.RowDefinitions>
             
             <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}"/>
-            <TextBox Grid.Row="1" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource celsiusConverter}}" 
+            <TextBox Grid.Row="1" Text="{Binding ElementName=mainWindow, Path=TemperatureInKelvin, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource celsiusConverter}}" 
                      x:Name="celsiusBox" Style="{StaticResource boxStyle}"/>
         </Grid>
         <Grid>
@@ -54,7 +55,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource fahrenheitConverter}}" 
+            <TextBox Grid.Row="1" Text="{Binding ElementName=mainWindow, Path=TemperatureInKelvin, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource fahrenheitConverter}}" 
                      x:Name="fahrenheitBox" Style="{StaticResource boxStyle}"/>
         </Grid>
         <Grid>
@@ -64,10 +65,10 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="Kelvin" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox Grid.Row="1" Text="{Binding ElementName=mainWindow, Path=TemperatureInKelvin, UpdateSourceTrigger=PropertyChanged}" 
                      x:Name="kelvinBox" Style="{StaticResource boxStyle}"/>
         </Grid>
-        <Slider x:Name="slider" Minimum="0" Maximum="1000"/>
+        <Slider Value="{Binding ElementName=mainWindow, Path=TemperatureInKelvin}" x:Name="slider" Minimum="0" Maximum="1000"/>
     </StackPanel>
    
 </Window>

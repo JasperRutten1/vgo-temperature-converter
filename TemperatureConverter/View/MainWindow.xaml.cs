@@ -13,14 +13,30 @@ using System.Windows.Shapes;
 using System.Windows.Data;
 using System;
 using System.Globalization;
+using System.ComponentModel;
 
 namespace View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private double temperatureInKelvin;
+        public double TemperatureInKelvin {
+            get
+            {
+                return this.temperatureInKelvin;
+            }
+            set
+            {
+                this.temperatureInKelvin = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
