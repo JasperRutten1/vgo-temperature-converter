@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using Model;
+using Cells;
 
 namespace ViewModel
 {
-    public class ConverterViewModel : INotifyPropertyChanged
+    public class ConverterViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -24,7 +25,7 @@ namespace ViewModel
             this.Celsius = new TemperatureScaleViewModel(this, new CelsiusTemperatureScale());
             this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
         }
-        public double TemperatureInKelvin
+        public Cell<double> TemperatureInKelvin
         {
             get
             {
@@ -32,7 +33,7 @@ namespace ViewModel
             }
             set
             {
-                this.temperatureInKelvin = value;
+                this.temperatureInKelvin = value.Value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
             }
         }

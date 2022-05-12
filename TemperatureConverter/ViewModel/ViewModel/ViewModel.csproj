@@ -45,6 +45,10 @@
     <Compile Include="ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Cells\Cells\Cells.csproj">
+      <Project>{2dff9dd1-d620-4f97-aa44-e85b4d61d8c3}</Project>
+      <Name>Cells</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Model\Model\Model.csproj">
       <Project>{45e11880-8a13-4b5c-8ced-a0a672edc26c}</Project>
       <Name>Model</Name>
